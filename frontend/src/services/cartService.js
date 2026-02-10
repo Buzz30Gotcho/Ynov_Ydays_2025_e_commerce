@@ -16,7 +16,7 @@ async function request(endpoint, options = {}) {
 
   // For DELETE requests with no content, or other methods that might not return JSON
   if (response.status === 204 || response.headers.get('content-length') === '0') {
-    return null 
+    return null
   }
 
   return response.json()
@@ -26,14 +26,14 @@ export function getCart() {
   return request('/cart')
 }
 
-export function addItemToCart(item) { // item should be { product_id, quantity }
+export function addItemToCart(item) {
   return request('/cart', {
     method: 'POST',
     body: JSON.stringify(item),
   })
 }
 
-export function updateCartItem(id, payload) { // payload should be { quantity }
+export function updateCartItem(id, payload) {
   return request(`/cart/${id}`, {
     method: 'PUT',
     body: JSON.stringify(payload),
@@ -47,7 +47,7 @@ export function removeCartItem(id) {
 }
 
 export function clearCart() {
-    return request('/cart', {
-        method: 'DELETE'
-    })
+  return request('/cart', {
+    method: 'DELETE'
+  })
 }

@@ -1,4 +1,3 @@
-// services/shopService.js
 import { supabase } from '../lib/supabaseClient';
 
 export const shopService = {

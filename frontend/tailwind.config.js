@@ -7,28 +7,33 @@ export default {
         xl: '2rem',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Playfair Display', 'serif'],
+        sans: ['Inter', 'sans-serif'],
+        serif: ['Lora', 'serif'],
       },
       colors: {
-        primary: {
-          50: '#fdf4ff',
-          500: '#a855f7',
-          600: '#9333ea',
+        'primary': {
+          DEFAULT: '#55849E',
+          light: '#A6CDE4',
+          dark: '#3B5B71',
         },
-        // ✅ AJOUTEZ CES COULEURS BLEUES
-        blue: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-        }
+        'secondary': {
+          DEFAULT: '#D4B8AE', // Rosy Beige
+          light: '#E0CFC9',
+          dark: '#BA9B92',
+        },
+        'text': {
+          dark: '#2F4858', // Dark Blue-Gray
+          medium: '#5C7C8A', // Medium Blue-Gray
+          light: '#8DA1AA',  // Light Blue-Gray
+        },
+        'background': '#F5F6F7', // Soft Off-White
+        'neutral': {
+          light: '#E0E4E7', // Light Neutral Gray
+          medium: '#CBD2D8', // Medium Neutral Gray
+        },
+        // Keeping red and green for feedback messages
+        'danger': '#EF4444', // Tailwind's red-500
+        'success': '#22C55E', // Tailwind's green-500
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',

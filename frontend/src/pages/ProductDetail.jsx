@@ -15,7 +15,7 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-blue-50 pt-20">
+      <div className="min-h-screen flex items-center justify-center bg-background pt-20">
         <LoadingSpinner />
       </div>
     );
@@ -23,12 +23,12 @@ const ProductDetail = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-blue-50 pt-20">
+      <div className="min-h-screen flex items-center justify-center bg-background pt-20">
         <div className="text-center">
           <div className="text-6xl mb-4">😔</div>
-          <h2 className="text-2xl font-bold text-blue-900 mb-4">Produit non trouvé</h2>
-          <p className="text-blue-600 max-w-md">{error}</p>
-          <Link to="/shops" className="mt-4 inline-block bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
+          <h2 className="text-2xl font-bold text-text-dark mb-4">Produit non trouvé</h2>
+          <p className="text-text-medium max-w-md">{error}</p>
+          <Link to="/shops" className="mt-4 inline-block bg-primary text-background px-6 py-3 rounded-lg font-semibold">
             Retour aux boutiques
           </Link>
         </div>
@@ -38,11 +38,11 @@ const ProductDetail = () => {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-blue-50 pt-20">
+      <div className="min-h-screen flex items-center justify-center bg-background pt-20">
         <div className="text-center">
           <div className="text-6xl mb-4">🔍</div>
-          <h2 className="text-2xl font-bold text-blue-900 mb-4">Produit introuvable</h2>
-          <Link to="/shops" className="inline-block bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
+          <h2 className="text-2xl font-bold text-text-dark mb-4">Produit introuvable</h2>
+          <Link to="/shops" className="inline-block bg-primary text-background px-6 py-3 rounded-lg font-semibold">
             Explorer les boutiques
           </Link>
         </div>
@@ -59,7 +59,7 @@ const ProductDetail = () => {
   };
 
   return (
-    <div className="product-detail-page bg-blue-50 min-h-screen pt-20">
+    <div className="product-detail-page bg-background min-h-screen pt-20">
       <div className="container mx-auto px-6 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Image du produit */}
@@ -70,10 +70,10 @@ const ProductDetail = () => {
               className="w-full h-96 lg:h-[500px] object-cover rounded-xl shadow-lg"
             />
             {product.shops && (
-              <div className="absolute top-4 left-4 bg-white bg-opacity-90 backdrop-blur-sm rounded-lg p-3 shadow-md">
+              <div className="absolute top-4 left-4 bg-background bg-opacity-90 backdrop-blur-sm rounded-lg p-3 shadow-md">
                 <Link to={`/shop/${product.shops.id}`} className="flex items-center space-x-2 text-sm">
                   <img src={product.shops.image || '/placeholder.png'} alt={product.shops.name} className="w-8 h-8 rounded-full object-cover" />
-                  <span className="font-medium text-blue-900">{product.shops.name}</span>
+                  <span className="font-medium text-text-dark">{product.shops.name}</span>
                 </Link>
               </div>
             )}
@@ -82,51 +82,51 @@ const ProductDetail = () => {
           {/* Détails du produit */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl lg:text-4xl font-bold text-blue-900 mb-2">{product.name}</h1>
-              <p className="text-blue-700 text-lg">{product.category || 'Produit'}</p>
+              <h1 className="text-3xl lg:text-4xl font-bold text-text-dark mb-2">{product.name}</h1>
+              <p className="text-text-medium text-lg">{product.category || 'Produit'}</p>
             </div>
 
-            <div className="text-3xl font-bold text-blue-600">
+            <div className="text-3xl font-bold text-primary">
               {product.price}€
             </div>
 
-            <div className="prose prose-blue max-w-none">
-              <h3 className="text-xl font-semibold text-blue-900 mb-3">Description</h3>
-              <p className="text-blue-700 leading-relaxed">{product.description}</p>
+            <div className="prose max-w-none"> {/* Removed prose-blue */}
+              <h3 className="text-xl font-semibold text-text-dark mb-3">Description</h3>
+              <p className="text-text-medium leading-relaxed">{product.description}</p>
             </div>
 
             {/* Informations supplémentaires */}
             <div className="grid grid-cols-2 gap-4 text-sm">
               {product.stock && (
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <div className="font-semibold text-blue-900">Stock</div>
-                  <div className="text-blue-600">{product.stock} disponibles</div>
+                <div className="bg-background rounded-lg p-4 shadow-sm">
+                  <div className="font-semibold text-text-dark">Stock</div>
+                  <div className="text-primary">{product.stock} disponibles</div>
                 </div>
               )}
               {product.shops?.delivery_time && (
-                <div className="bg-white rounded-lg p-4 shadow-sm">
-                  <div className="font-semibold text-blue-900">Livraison</div>
-                  <div className="text-blue-600">{product.shops.delivery_time}</div>
+                <div className="bg-background rounded-lg p-4 shadow-sm">
+                  <div className="font-semibold text-text-dark">Livraison</div>
+                  <div className="text-primary">{product.shops.delivery_time}</div>
                 </div>
               )}
             </div>
 
             {/* Sélecteur de quantité et bouton ajouter */}
-            <div className="bg-white rounded-xl p-6 shadow-sm space-y-4">
+            <div className="bg-neutral-light rounded-xl p-6 shadow-sm space-y-4">
               <div className="flex items-center justify-between">
-                <label className="font-semibold text-blue-900">Quantité</label>
+                <label className="font-semibold text-text-dark">Quantité</label>
                 <div className="flex items-center space-x-3">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold flex items-center justify-center"
+                    className="w-10 h-10 rounded-full bg-primary-light hover:bg-primary text-background font-bold flex items-center justify-center"
                     disabled={isAdded}
                   >
                     -
                   </button>
-                  <span className="w-12 text-center font-semibold text-blue-900">{quantity}</span>
+                  <span className="w-12 text-center font-semibold text-text-dark">{quantity}</span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="w-10 h-10 rounded-full bg-blue-100 hover:bg-blue-200 text-blue-700 font-bold flex items-center justify-center"
+                    className="w-10 h-10 rounded-full bg-primary-light hover:bg-primary text-background font-bold flex items-center justify-center"
                     disabled={isAdded || (product.stock && quantity >= product.stock)}
                   >
                     +
@@ -137,12 +137,12 @@ const ProductDetail = () => {
               <button
                 onClick={handleAddToCart}
                 disabled={isAdded || (product.stock && product.stock === 0)}
-                className={`w-full text-white py-4 rounded-lg font-semibold text-lg transition-colors duration-200 flex items-center justify-center space-x-2 ${
+                className={`w-full text-background py-4 rounded-lg font-semibold text-lg transition-colors duration-200 flex items-center justify-center space-x-2 ${
                   isAdded
-                    ? 'bg-green-500 cursor-not-allowed'
+                    ? 'bg-success cursor-not-allowed'
                     : (product.stock && product.stock === 0) 
-                    ? 'bg-gray-400 cursor-not-allowed'
-                    : 'bg-blue-700 hover:bg-blue-800'
+                    ? 'bg-neutral-medium cursor-not-allowed'
+                    : 'bg-primary hover:bg-primary-dark'
                 }`}
               >
                 {isAdded ? (
@@ -165,7 +165,7 @@ const ProductDetail = () => {
             {product.shops && (
               <Link
                 to={`/shop/${product.shops.id}`}
-                className="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-medium"
+                className="inline-flex items-center space-x-2 text-primary hover:text-primary-dark font-medium"
               >
                 <span>←</span>
                 <span>Retour à {product.shops.name}</span>
@@ -179,8 +179,8 @@ const ProductDetail = () => {
         )}
       </div>
     </div>
-  );
-};
 
+      );
+};
 
 export default ProductDetail;

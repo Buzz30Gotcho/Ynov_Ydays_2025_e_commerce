@@ -87,12 +87,14 @@ export function CartProvider({ children }) {
   }
 
   const cartCount = cart.reduce((count, item) => count + item.quantity, 0)
+  const totalPrice = cart.reduce((total, item) => total + (item.products?.price || 0) * item.quantity, 0)
 
   return (
     <CartContext.Provider
       value={{
         cart,
         cartCount,
+        totalPrice,
         loading,
         addItem,
         updateItemQuantity,

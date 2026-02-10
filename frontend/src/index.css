@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+  @apply font-sans text-text-dark bg-background; /* Apply default font, text color, and background */
+}
