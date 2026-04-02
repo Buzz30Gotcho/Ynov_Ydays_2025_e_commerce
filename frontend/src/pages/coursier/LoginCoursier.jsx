@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 import { motion } from "framer-motion";
-import { Loader2, LogIn, Eye, EyeOff } from "lucide-react";
+import { Loader2, Eye, EyeOff, Truck } from "lucide-react";
 
 // Import de l'image locale
 import localStyleLogo from "/localstyle.png";
 
-const LoginMerchant = () => {
+const LoginCoursier = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const { login } = useAuth();
+  const { login, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -39,7 +39,8 @@ const LoginMerchant = () => {
     try {
       const result = await login(formData.email, formData.password);
       if (result.success) {
-        navigate("/merchant/dashboard");
+        console.log('Connexion réussie, redirection forcée vers le dashboard...');
+        navigate("/coursier/dashboard");
       } else {
         setErrors({ submit: result.error });
       }
@@ -58,8 +59,8 @@ const LoginMerchant = () => {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className="w-full max-w-md bg-card rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.03)] p-12 relative overflow-hidden border border-border"
       >
-        {/* Subtle Decorative Element */}
-        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green/20 to-transparent" />
+        {/* Decorative Element */}
+        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-blue-500/20 to-transparent" />
         
         {/* Header */}
         <motion.div
@@ -76,11 +77,11 @@ const LoginMerchant = () => {
               className="w-20 h-auto grayscale brightness-90 hover:grayscale-0 transition-all duration-500"
             />
           </div>
-          <h1 className="text-3xl font-serif tracking-tight text-text-dark mb-2">
-            Espace Créateur
+          <h1 className="text-3xl font-serif tracking-tight text-text-dark mb-2 flex items-center justify-center gap-2">
+            Espace Coursier <Truck size={24} className="text-blue-500" />
           </h1>
           <p className="text-text-light text-[10px] uppercase tracking-[0.3em] font-bold">
-            Gérer votre boutique
+            Gérer vos livraisons
           </p>
         </motion.div>
 
@@ -93,11 +94,11 @@ const LoginMerchant = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="votre@boutique.com"
+              placeholder="votre@email.com"
               className={`w-full py-3 bg-transparent border-b text-text-dark placeholder:text-text-light/50 focus:outline-none transition-all duration-300 ${
                 errors.email 
                   ? "border-danger" 
-                  : "border-border focus:border-green"
+                  : "border-border focus:border-blue-500"
               }`}
             />
             {errors.email && (
@@ -120,13 +121,13 @@ const LoginMerchant = () => {
                 className={`w-full py-3 pr-10 bg-transparent border-b text-text-dark placeholder:text-text-light/50 focus:outline-none transition-all duration-300 ${
                   errors.password 
                     ? "border-danger" 
-                    : "border-border focus:border-green"
+                    : "border-border focus:border-blue-500"
                 }`}
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-0 top-1/2 transform -translate-y-1/2 text-text-light hover:text-green transition-colors"
+                className="absolute right-0 top-1/2 transform -translate-y-1/2 text-text-light hover:text-blue-500 transition-colors"
               >
                 {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
               </button>
@@ -142,7 +143,7 @@ const LoginMerchant = () => {
             whileTap={{ y: 0 }}
             type="submit"
             disabled={loading}
-            className="w-full py-4 bg-text-dark text-white text-[12px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-green transition-all duration-500 disabled:opacity-50 shadow-sm"
+            className="w-full py-4 bg-text-dark text-white text-[12px] font-bold uppercase tracking-[0.2em] rounded-sm hover:bg-blue-600 transition-all duration-500 disabled:opacity-50 shadow-sm"
           >
             {loading ? (
               <Loader2 className="animate-spin w-4 h-4 mx-auto" />
@@ -154,12 +155,12 @@ const LoginMerchant = () => {
           {/* Lien vers l'inscription */}
           <div className="text-center pt-4">
             <p className="text-[11px] text-text-light uppercase tracking-widest">
-              Pas encore partenaire ?{" "}
+              Pas encore coursier ?{" "}
               <Link
-                to="/merchant/register"
-                className="text-green font-bold hover:text-green-dark transition-colors"
+                to="/coursier/register"
+                className="text-blue-500 font-bold hover:text-blue-700 transition-colors"
               >
-                Rejoindre le réseau
+                Devenir coursier
               </Link>
             </p>
           </div>
@@ -169,4 +170,4 @@ const LoginMerchant = () => {
   );
 };
 
-export default LoginMerchant;
+export default LoginCoursier;
